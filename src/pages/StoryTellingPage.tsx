@@ -190,7 +190,7 @@ const StoryTellingPage = () => {
         speechSynthesis.cancel();
       }
     };
-  }, [mainAudio, backgroundAudio, speechUtterance]);
+  }, []);
 
   const getCurrentStory = () => {
     return stories.find(story => story.id === selectedStory);
@@ -253,10 +253,15 @@ const StoryTellingPage = () => {
         }
         if (speechUtterance) {
           speechSynthesis.cancel();
+          setSpeechUtterance(null);
         }
         setIsPlaying(false);
         return;
       }
+
+      // Stop any existing speech synthesis
+      speechSynthesis.cancel();
+      setSpeechUtterance(null);
 
       // Play audio
       const audioUrl = story.audioUrl || `/assets/audio/${story.id}_story.mp3`;
@@ -278,6 +283,9 @@ const StoryTellingPage = () => {
       newMainAudio.onerror = () => {
         // Fallback to enhanced speech synthesis with melodious voice
         console.log('Audio file not found, using enhanced speech synthesis');
+        
+        // Cancel any existing speech synthesis
+        speechSynthesis.cancel();
         
         const utterance = createStorytellingVoice(story.content[currentPage]);
         
@@ -326,6 +334,9 @@ const StoryTellingPage = () => {
       } catch (e) {
         console.log('Main audio autoplay blocked, using speech synthesis');
         
+        // Cancel any existing speech synthesis
+        speechSynthesis.cancel();
+        
         // Fallback to speech synthesis
         const utterance = createStorytellingVoice(story.content[currentPage]);
         
@@ -335,6 +346,12 @@ const StoryTellingPage = () => {
           if (backgroundAudio) {
             backgroundAudio.pause();
           }
+        };
+        
+        utterance.onerror = () => {
+          console.error('Speech synthesis failed');
+          setIsPlaying(false);
+          setSpeechUtterance(null);
         };
         
         setSpeechUtterance(utterance);

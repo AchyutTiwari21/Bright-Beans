@@ -82,7 +82,7 @@ const AlphabetPage = () => {
             >
               <div className="text-center">
                 <div className="text-4xl font-bold mb-2">{item.letter}</div>
-                <div className="text-3xl mb-2">{item.emoji}</div>
+                <div className="text-5xl hover:text-7xl mb-2">{item.emoji}</div>
                 <div className="text-sm font-medium">{item.word}</div>
                 <Volume2 className="w-4 h-4 mx-auto mt-2 opacity-60" />
               </div>

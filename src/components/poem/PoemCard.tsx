@@ -68,7 +68,7 @@ const PoemCard = ({ poem, onActivityClick }: PoemCardProps) => {
         speechSynthesis.cancel();
       }
     };
-  }, [mainAudio, backgroundAudio, speechUtterance]);
+  }, []);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;

@@ -140,7 +140,273 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-cyan-200 via-pink-300 to-yellow-200 overflow-hidden relative">
+      {/* Colorful Background Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-blue-200/50 via-yellow-200/50 to-pink-200/50"></div>
+      
+      {/* Rainbow Background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Clouds - positioned higher */}
+        <motion.div
+          animate={{ x: [0, 30, 0], y: [0, -10, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-8 left-20 z-20"
+        >
+          <div className="hidden lg:block text-8xl opacity-90 drop-shadow-lg">☁️</div>
+        </motion.div>
+        
+        <motion.div
+          animate={{ x: [0, -25, 0], y: [0, 15, 0] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          className="absolute top-16 right-24 z-20"
+        >
+          <div className="hidden lg:block text-7xl opacity-85 drop-shadow-lg">☁️</div>
+        </motion.div>
+
+        <motion.div
+          animate={{ x: [0, 20, 0], y: [0, -8, 0] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 4 }}
+          className="absolute top-12 left-1/3 z-20"
+        >
+          <div className="text-6xl opacity-80 drop-shadow-lg">☁️</div>
+        </motion.div>
+
+        <motion.div
+          animate={{ x: [0, -15, 0], y: [0, 12, 0] }}
+          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          className="absolute top-20 right-1/3 z-20"
+        >
+          <div className="hidden lg:block text-7xl opacity-90 drop-shadow-lg">☁️</div>
+        </motion.div>
+
+        {/* Much Bigger Rainbow Arc - positioned under clouds */}
+        <motion.div
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 0.9 }}
+          transition={{ duration: 2, ease: "easeOut" }}
+          className="absolute top-20 left-1/2 transform -translate-x-1/2 z-10"
+        >
+          <svg width="1200" height="600" viewBox="0 0 1200 600" className="w-full max-w-6xl">
+            {/* Much bigger rainbow stripes with enhanced colors */}
+            <path d="M 100 550 Q 600 100 1100 550" stroke="#ff1744" strokeWidth="35" fill="none" opacity="0.9" />
+            <path d="M 100 550 Q 600 130 1100 550" stroke="#ff9800" strokeWidth="35" fill="none" opacity="0.9" />
+            <path d="M 100 550 Q 600 160 1100 550" stroke="#ffeb3b" strokeWidth="35" fill="none" opacity="0.9" />
+            <path d="M 100 550 Q 600 190 1100 550" stroke="#4caf50" strokeWidth="35" fill="none" opacity="0.9" />
+            <path d="M 100 550 Q 600 220 1100 550" stroke="#2196f3" strokeWidth="35" fill="none" opacity="0.9" />
+            <path d="M 100 550 Q 600 250 1100 550" stroke="#673ab7" strokeWidth="35" fill="none" opacity="0.9" />
+            <path d="M 100 550 Q 600 280 1100 550" stroke="#e91e63" strokeWidth="35" fill="none" opacity="0.9" />
+            
+            {/* Additional rainbow glow effect */}
+            <path d="M 100 550 Q 600 100 1100 550" stroke="#ff1744" strokeWidth="50" fill="none" opacity="0.3" />
+            <path d="M 100 550 Q 600 130 1100 550" stroke="#ff9800" strokeWidth="50" fill="none" opacity="0.3" />
+            <path d="M 100 550 Q 600 160 1100 550" stroke="#ffeb3b" strokeWidth="50" fill="none" opacity="0.3" />
+            <path d="M 100 550 Q 600 190 1100 550" stroke="#4caf50" strokeWidth="50" fill="none" opacity="0.3" />
+            <path d="M 100 550 Q 600 220 1100 550" stroke="#2196f3" strokeWidth="50" fill="none" opacity="0.3" />
+            <path d="M 100 550 Q 600 250 1100 550" stroke="#673ab7" strokeWidth="50" fill="none" opacity="0.3" />
+            <path d="M 100 550 Q 600 280 1100 550" stroke="#e91e63" strokeWidth="50" fill="none" opacity="0.3" />
+          </svg>
+        </motion.div>
+
+        {/* Additional colorful background elements */}
+        <motion.div
+          animate={{ 
+            scale: [1, 1.2, 1],
+            rotate: [0, 180, 360]
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/4 left-1/4 z-5"
+        >
+          <div className="hidden lg:block text-9xl opacity-60">🌈</div>
+        </motion.div>
+
+        <motion.div
+          animate={{ 
+            scale: [1, 1.3, 1],
+            rotate: [360, 0]
+          }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          className="absolute top-1/3 right-1/4 z-5"
+        >
+          <div className="hidden lg:block text-9xl opacity-70">🌈</div>
+        </motion.div>
+
+        {/* Colorful sun */}
+        <motion.div
+          animate={{ 
+            rotate: [0, 360],
+            scale: [1, 1.1, 1]
+          }}
+          transition={{ 
+            rotate: { duration: 20, repeat: Infinity, ease: "linear" },
+            scale: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+          }}
+          className="absolute top-16 right-16 z-15"
+        >
+          <div className="hidden lg:block text-8xl drop-shadow-lg">☀️</div>
+        </motion.div>
+
+        {/* Enhanced Cartoon Characters with more vibrant positioning */}
+        <motion.div
+          animate={{ 
+            y: [0, -20, 0],
+            rotate: [0, 8, -8, 0],
+            scale: [1, 1.1, 1]
+          }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/3 left-16"
+        >
+          <div className="text-5xl drop-shadow-lg">🦋</div>
+        </motion.div>
+
+        <motion.div
+          animate={{ 
+            y: [0, -25, 0],
+            x: [0, 15, 0],
+            scale: [1, 1.2, 1]
+          }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          className="absolute top-1/2 right-20"
+        >
+          <div className="text-6xl drop-shadow-lg">🐝</div>
+        </motion.div>
+
+        <motion.div
+          animate={{ 
+            y: [0, -18, 0],
+            rotate: [0, -5, 5, 0],
+            scale: [1, 1.15, 1]
+          }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          className="absolute bottom-1/3 left-1/4"
+        >
+          <div className="text-5xl drop-shadow-lg">🐰</div>
+        </motion.div>
+
+        <motion.div
+          animate={{ 
+            y: [0, -22, 0],
+            scale: [1, 1.2, 1],
+            rotate: [0, 10, -10, 0]
+          }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 3 }}
+          className="absolute bottom-1/4 right-1/3"
+        >
+          <div className="text-5xl drop-shadow-lg">🦊</div>
+        </motion.div>
+
+        <motion.div
+          animate={{ 
+            y: [0, -15, 0],
+            x: [0, -12, 0],
+            scale: [1, 1.1, 1]
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+          className="absolute top-2/3 left-12"
+        >
+          <div className="text-4xl drop-shadow-lg">🐸</div>
+        </motion.div>
+
+        <motion.div
+          animate={{ 
+            y: [0, -20, 0],
+            rotate: [0, 15, -15, 0],
+            scale: [1, 1.1, 1]
+          }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 4 }}
+          className="absolute top-3/4 right-16"
+        >
+          <div className="text-5xl drop-shadow-lg">🐱</div>
+        </motion.div>
+
+        <motion.div
+          animate={{ 
+            y: [0, -16, 0],
+            scale: [1, 1.15, 1],
+            x: [0, 8, 0]
+          }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2.5 }}
+          className="absolute bottom-1/2 left-1/3"
+        >
+          <div className="text-4xl drop-shadow-lg">🐭</div>
+        </motion.div>
+
+        <motion.div
+          animate={{ 
+            y: [0, -25, 0],
+            x: [0, 15, 0],
+            scale: [1, 1.2, 1]
+          }}
+          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+          className="absolute bottom-1/3 right-1/4"
+        >
+          <div className="text-5xl drop-shadow-lg">🐻</div>
+        </motion.div>
+
+        {/* Additional magical floating elements */}
+        <motion.div
+          animate={{ 
+            y: [0, -30, 0],
+            rotate: [0, 360],
+            scale: [1, 1.3, 1]
+          }}
+          transition={{ 
+            y: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+            rotate: { duration: 8, repeat: Infinity, ease: "linear" },
+            scale: { duration: 6, repeat: Infinity, ease: "easeInOut" }
+          }}
+          className="absolute top-1/4 left-1/2"
+        >
+          <div className="text-4xl drop-shadow-lg">🌈</div>
+        </motion.div>
+
+        <motion.div
+          animate={{ 
+            y: [0, -20, 0],
+            scale: [1, 1.4, 1],
+            rotate: [0, 180, 360]
+          }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 3 }}
+          className="absolute bottom-1/4 right-12"
+        >
+          <div className="text-4xl drop-shadow-lg">🌸</div>
+        </motion.div>
+
+        <motion.div
+          animate={{ 
+            y: [0, -25, 0],
+            x: [0, -15, 0],
+            scale: [1, 1.2, 1]
+          }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          className="absolute top-1/2 right-1/2"
+        >
+          <div className="text-3xl drop-shadow-lg">🌺</div>
+        </motion.div>
+
+        {/* Colorful balloons */}
+        <motion.div
+          animate={{ 
+            y: [0, -30, 0],
+            x: [0, 10, 0]
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          className="absolute bottom-1/4 left-16"
+        >
+          <div className="text-5xl drop-shadow-lg">🎈</div>
+        </motion.div>
+
+        <motion.div
+          animate={{ 
+            y: [0, -25, 0],
+            x: [0, -12, 0]
+          }}
+          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 4 }}
+          className="absolute bottom-1/3 right-20"
+        >
+          <div className="text-4xl drop-shadow-lg">�</div>
+        </motion.div>
+      </div>
+
       {/* Floating Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
@@ -152,17 +418,24 @@ const LandingPage = () => {
         </motion.div>
         <motion.div
           animate={{ x: [0, -80, 0], y: [0, 60, 0] }}
-          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-          className="absolute top-40 right-20 text-4xl opacity-20"
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          className="absolute top-40 right-20 text-4xl opacity-30"
         >
-          🎈
+          ✨
         </motion.div>
         <motion.div
-          animate={{ x: [0, 60, 0], y: [0, -40, 0] }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute bottom-40 left-1/4 text-5xl opacity-20"
+          animate={{ x: [0, 120, 0], y: [0, -40, 0] }}
+          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+          className="absolute bottom-40 left-1/4 text-5xl opacity-25"
         >
-          🦋
+          💫
+        </motion.div>
+        <motion.div
+          animate={{ x: [0, -90, 0], y: [0, 70, 0] }}
+          transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
+          className="absolute bottom-20 right-1/3 text-3xl opacity-35"
+        >
+          🌟
         </motion.div>
       </div>
 
