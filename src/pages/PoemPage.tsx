@@ -20,8 +20,11 @@ Like a diamond in the sky.
 Twinkle, twinkle, little star,
 How I wonder what you are!`,
       character: '⭐',
-      characterColor: 'bg-gradient-to-br from-yellow-300 to-orange-400',
-      theme: "bg-gradient-to-br from-purple-100 to-blue-100",
+      characterColor: 'bg-gradient-to-br from-yellow-300 to-amber-400',
+      theme: "bg-gradient-to-br from-yellow-100 to-amber-100",
+      audioUrl: '/assets/audio/twinkle_star_english.mp3',
+      audioUrlHindi: '/assets/audio/twinkle_star_hindi.mp3',
+      backgroundMusicUrl: '/assets/audio/gentle_lullaby_music.mp3',
       rhymingWords: [
         { word1: 'star', word2: 'are', emoji1: '⭐', emoji2: '❓' },
         { word1: 'high', word2: 'sky', emoji1: '⬆️', emoji2: '🌌' }
@@ -31,21 +34,24 @@ How I wonder what you are!`,
       id: 'mary-lamb',
       title: "Mary Had a Little Lamb",
       content: `Mary had a little lamb,
-Its fleece was white as snow,
+Its fleece was white as snow.
 And everywhere that Mary went,
 The lamb was sure to go.
+
 It followed her to school one day,
-Which was against the rule;
+Which was against the rule.
 It made the children laugh and play
 To see a lamb at school.`,
       character: '🐑',
       characterColor: 'bg-gradient-to-br from-pink-300 to-rose-400',
       theme: "bg-gradient-to-br from-pink-100 to-rose-100",
+      audioUrl: '/assets/audio/mary_lamb_english.mp3',
+      backgroundMusicUrl: '/assets/audio/playful_children_music.mp3',
       rhymingWords: [
-        { word1: 'lamb', word2: 'am', emoji1: '🐑', emoji2: '👋' },
-        { word1: 'snow', word2: 'go', emoji1: '❄️', emoji2: '🚶' },
-        { word1: 'day', word2: 'play', emoji1: '☀️', emoji2: '🎮' },
-        { word1: 'rule', word2: 'school', emoji1: '📏', emoji2: '🏫' }
+        { word1: 'lamb', word2: 'snow', emoji1: '🐑', emoji2: '❄️' },
+        { word1: 'went', word2: 'go', emoji1: '🚶', emoji2: '➡️' },
+        { word1: 'day', word2: 'rule', emoji1: '📅', emoji2: '📏' },
+        { word1: 'play', word2: 'school', emoji1: '🎮', emoji2: '🏫' }
       ]
     },
     {
@@ -53,29 +59,16 @@ To see a lamb at school.`,
       title: "Humpty Dumpty",
       content: `Humpty Dumpty sat on a wall,
 Humpty Dumpty had a great fall.
-All the king's horses and all the king's men
+All the king's horses and all the king's men,
 Couldn't put Humpty together again.`,
       character: '🥚',
-      characterColor: 'bg-gradient-to-br from-yellow-300 to-amber-400',
-      theme: "bg-gradient-to-br from-yellow-100 to-orange-100",
+      characterColor: 'bg-gradient-to-br from-orange-300 to-red-400',
+      theme: "bg-gradient-to-br from-orange-100 to-red-100",
+      audioUrl: '/assets/audio/humpty_dumpty_english.mp3',
+      backgroundMusicUrl: '/assets/audio/whimsical_nursery_music.mp3',
       rhymingWords: [
         { word1: 'wall', word2: 'fall', emoji1: '🧱', emoji2: '⬇️' },
         { word1: 'men', word2: 'again', emoji1: '👨', emoji2: '🔄' }
-      ]
-    },
-    {
-      id: 'row-boat',
-      title: "Row, Row, Row Your Boat",
-      content: `Row, row, row your boat,
-Gently down the stream.
-Merrily, merrily, merrily, merrily,
-Life is but a dream.`,
-      character: '🚣',
-      characterColor: 'bg-gradient-to-br from-blue-300 to-cyan-400',
-      theme: "bg-gradient-to-br from-green-100 to-teal-100",
-      rhymingWords: [
-        { word1: 'boat', word2: 'float', emoji1: '🚣', emoji2: '🎈' },
-        { word1: 'stream', word2: 'dream', emoji1: '🌊', emoji2: '💭' }
       ]
     },
     {
@@ -85,18 +78,20 @@ Life is but a dream.`,
 Have you any wool?
 Yes sir, yes sir,
 Three bags full.
+
 One for the master,
 One for the dame,
-And one for the little boy
+And one for the little boy,
 Who lives down the lane.`,
       character: '🐑',
-      characterColor: 'bg-gradient-to-br from-gray-600 to-gray-800',
-      theme: "bg-gradient-to-br from-gray-100 to-slate-200",
+      characterColor: 'bg-gradient-to-br from-gray-400 to-slate-500',
+      theme: "bg-gradient-to-br from-gray-100 to-slate-100",
+      audioUrl: '/assets/audio/baa_sheep_english.mp3',
+      backgroundMusicUrl: '/assets/audio/countryside_music.mp3',
       rhymingWords: [
-        { word1: 'sheep', word2: 'sleep', emoji1: '🐑', emoji2: '😴' },
-        { word1: 'wool', word2: 'full', emoji1: '🧶', emoji2: '🎒' },
-        { word1: 'dame', word2: 'name', emoji1: '👩', emoji2: '📛' },
-        { word1: 'lane', word2: 'rain', emoji1: '🛤️', emoji2: '🌧️' }
+        { word1: 'sheep', word2: 'wool', emoji1: '🐑', emoji2: '🧶' },
+        { word1: 'sir', word2: 'full', emoji1: '👨', emoji2: '🎒' },
+        { word1: 'dame', word2: 'lane', emoji1: '👩', emoji2: '🛤️' }
       ]
     },
     {
@@ -108,12 +103,30 @@ The clock struck one,
 The mouse ran down,
 Hickory dickory dock.`,
       character: '🐭',
-      characterColor: 'bg-gradient-to-br from-amber-300 to-yellow-400',
-      theme: "bg-gradient-to-br from-amber-100 to-yellow-100",
+      characterColor: 'bg-gradient-to-br from-brown-400 to-amber-500',
+      theme: "bg-gradient-to-br from-brown-100 to-amber-100",
+      audioUrl: '/assets/audio/hickory_dock_english.mp3',
+      backgroundMusicUrl: '/assets/audio/clock_ticking_music.mp3',
       rhymingWords: [
         { word1: 'dock', word2: 'clock', emoji1: '⚓', emoji2: '🕐' },
-        { word1: 'one', word2: 'done', emoji1: '1️⃣', emoji2: '✅' },
-        { word1: 'down', word2: 'town', emoji1: '⬇️', emoji2: '🏘️' }
+        { word1: 'one', word2: 'down', emoji1: '1️⃣', emoji2: '⬇️' }
+      ]
+    },
+    {
+      id: 'row-boat',
+      title: "Row, Row, Row Your Boat",
+      content: `Row, row, row your boat,
+Gently down the stream.
+Merrily, merrily, merrily, merrily,
+Life is but a dream.`,
+      character: '🚣',
+      characterColor: 'bg-gradient-to-br from-blue-400 to-cyan-500',
+      theme: "bg-gradient-to-br from-blue-100 to-cyan-100",
+      audioUrl: '/assets/audio/row_boat_english.mp3',
+      backgroundMusicUrl: '/assets/audio/gentle_water_music.mp3',
+      rhymingWords: [
+        { word1: 'boat', word2: 'stream', emoji1: '🚣', emoji2: '🌊' },
+        { word1: 'merrily', word2: 'dream', emoji1: '😊', emoji2: '💭' }
       ]
     }
   ];

@@ -188,7 +188,7 @@ const LandingPage = () => {
             }}
             className="text-4xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent"
           >
-            BrightBeans
+            Bright Beans
           </motion.h1>
           <motion.div variants={sparkleVariants} animate="animate">
             <Sparkles className="w-8 h-8 md:w-12 md:h-12 text-yellow-500" />

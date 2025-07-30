@@ -14,14 +14,16 @@ const HindiRhymesPage = () => {
       id: 'chanda-mama',
       title: "चंदा मामा दूर के",
       content: `चंदा मामा दूर के,
-                पुए पकाएं बूर के।
-                आप खाएं थाली में,
-                मुन्ने को दें प्याली में।
-                प्याली गई टूट,
-                मुन्ना गया रूठ।`,
+पुए पकाएं बूर के।
+आप खाएं थाली में,
+मुन्ने को दें प्याली में।
+प्याली गई टूट,
+मुन्ना गया रूठ।`,
       character: '🌙',
       characterColor: 'bg-gradient-to-br from-blue-300 to-indigo-400',
       theme: "bg-gradient-to-br from-blue-100 to-indigo-100",
+      audioUrl: '/assets/audio/chanda_mama_hindi.mp3',
+      backgroundMusicUrl: '/assets/audio/gentle_night_music.mp3',
       rhymingWords: [
         { word1: 'के', word2: 'बूर के', emoji1: '🌙', emoji2: '🍪' },
         { word1: 'में', word2: 'प्याली में', emoji1: '🍽️', emoji2: '🥛' },
@@ -40,6 +42,8 @@ const HindiRhymesPage = () => {
       character: '🥔',
       characterColor: 'bg-gradient-to-br from-yellow-300 to-amber-400',
       theme: "bg-gradient-to-br from-green-100 to-teal-100",
+      audioUrl: '/assets/audio/aloo_kachalu_hindi.mp3',
+      backgroundMusicUrl: '/assets/audio/playful_forest_music.mp3',
       rhymingWords: [
         { word1: 'बेटा', word2: 'थे', emoji1: '👶', emoji2: '❓' },
         { word1: 'में', word2: 'थे', emoji1: '🌳', emoji2: '😴' },
@@ -56,6 +60,8 @@ const HindiRhymesPage = () => {
       character: '🐠',
       characterColor: 'bg-gradient-to-br from-cyan-300 to-blue-400',
       theme: "bg-gradient-to-br from-cyan-100 to-blue-100",
+      audioUrl: '/assets/audio/machli_rani_hindi.mp3',
+      backgroundMusicUrl: '/assets/audio/underwater_music.mp3',
       rhymingWords: [
         { word1: 'रानी है', word2: 'पानी है', emoji1: '👸', emoji2: '💧' },
         { word1: 'जाएगी', word2: 'जाएगी', emoji1: '😨', emoji2: '💀' }
@@ -71,6 +77,8 @@ const HindiRhymesPage = () => {
       character: '🦚',
       characterColor: 'bg-gradient-to-br from-green-400 to-emerald-500',
       theme: "bg-gradient-to-br from-purple-100 to-pink-100",
+      audioUrl: '/assets/audio/nani_morni_hindi.mp3',
+      backgroundMusicUrl: '/assets/audio/traditional_folk_music.mp3',
       rhymingWords: [
         { word1: 'गए', word2: 'गए', emoji1: '🦚', emoji2: '🦚' },
         { word1: 'हैं', word2: 'हैं', emoji1: '😭', emoji2: '😭' }
@@ -88,6 +96,8 @@ const HindiRhymesPage = () => {
       character: '🐎',
       characterColor: 'bg-gradient-to-br from-amber-400 to-orange-500',
       theme: "bg-gradient-to-br from-yellow-100 to-orange-100",
+      audioUrl: '/assets/audio/lakdi_kathi_hindi.mp3',
+      backgroundMusicUrl: '/assets/audio/royal_court_music.mp3',
       rhymingWords: [
         { word1: 'काठी', word2: 'घोड़ा', emoji1: '🪑', emoji2: '🐎' },
         { word1: 'मोड़ा', word2: 'खोला', emoji1: '🎀', emoji2: '🔓' }
@@ -105,6 +115,8 @@ const HindiRhymesPage = () => {
       character: '📞',
       characterColor: 'bg-gradient-to-br from-red-400 to-pink-500',
       theme: "bg-gradient-to-br from-red-100 to-pink-100",
+      audioUrl: '/assets/audio/ring_ring_hindi.mp3',
+      backgroundMusicUrl: '/assets/audio/home_comfort_music.mp3',
       rhymingWords: [
         { word1: 'रिंग', word2: 'पे', emoji1: '📞', emoji2: '☎️' },
         { word1: 'मम्मी', word2: 'बेटे', emoji1: '👩', emoji2: '👶' },
@@ -123,6 +135,8 @@ const HindiRhymesPage = () => {
       character: '🔢',
       characterColor: 'bg-gradient-to-br from-purple-400 to-violet-500',
       theme: "bg-gradient-to-br from-purple-100 to-violet-100",
+      audioUrl: '/assets/audio/ek_do_teen_hindi.mp3',
+      backgroundMusicUrl: '/assets/audio/counting_song_music.mp3',
       rhymingWords: [
         { word1: 'चार', word2: 'आठ', emoji1: '4️⃣', emoji2: '8️⃣' },
         { word1: 'बारह', word2: 'सोलह', emoji1: '1️⃣2️⃣', emoji2: '1️⃣6️⃣' },
