@@ -27,7 +27,7 @@ const StoryTellingPage = () => {
   const [speechUtterance, setSpeechUtterance] = useState<SpeechSynthesisUtterance | null>(null);
   const [isMuted, setIsMuted] = useState(false);
   const [audioLevels, setAudioLevels] = useState<number[]>([0, 0, 0, 0, 0, 0]);
-  const [voicesLoaded, setVoicesLoaded] = useState(false);
+  // const [voicesLoaded, setVoicesLoaded] = useState(false);
 
   const stories: Story[] = [
     {
@@ -146,21 +146,21 @@ const StoryTellingPage = () => {
   ];
 
   // Load voices when available
-  useEffect(() => {
-    const loadVoices = () => {
-      const voices = speechSynthesis.getVoices();
-      if (voices.length > 0) {
-        setVoicesLoaded(true);
-      }
-    };
+  // useEffect(() => {
+    // const loadVoices = () => {
+      // const voices = speechSynthesis.getVoices();
+      // if (voices.length > 0) {
+      //   setVoicesLoaded(true);
+      // }
+    // };
 
-    loadVoices();
-    speechSynthesis.addEventListener('voiceschanged', loadVoices);
+    // loadVoices();
+    // speechSynthesis.addEventListener('voiceschanged', loadVoices);
 
-    return () => {
-      speechSynthesis.removeEventListener('voiceschanged', loadVoices);
-    };
-  }, []);
+    // return () => {
+    //   speechSynthesis.removeEventListener('voiceschanged', loadVoices);
+    // };
+  // }, []);
 
   // Audio visualization effect
   useEffect(() => {
