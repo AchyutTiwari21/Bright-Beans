@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft, Puzzle, RotateCcw, Trophy } from 'lucide-react';
 
 const PuzzleGamesPage = () => {
-  const [selectedGame, setSelectedGame] = useState<'memory' | 'pattern' | 'colors'>('memory');
+  const [selectedGame, setSelectedGame] = useState<'memory' |   'colors'>('memory');
   
   // Memory Game State
   const [cards, setCards] = useState<{ id: number; emoji: string; isFlipped: boolean; isMatched: boolean }[]>([]);
@@ -11,28 +11,23 @@ const PuzzleGamesPage = () => {
   const [score, setScore] = useState(0);
   const [moves, setMoves] = useState(0);
 
-  // Pattern Game State
-  const [pattern, setPattern] = useState<number[]>([]);
-  const [userPattern, setUserPattern] = useState<number[]>([]);
-  const [showPattern, setShowPattern] = useState(false);
-  const [gameState, setGameState] = useState<'waiting' | 'showing' | 'input' | 'success' | 'fail'>('waiting');
-  const [level, setLevel] = useState(1);
-
   // Color Game State
   const [targetColor, setTargetColor] = useState('');
-  const [colorOptions, setColorOptions] = useState<string[]>([]);
+  const [colorOptions, setColorOptions] = useState<{ name: string; value: string }[]>([]);
   const [colorScore, setColorScore] = useState(0);
+  const [message, setMessage] = useState<string | null>(null);
+  const [isColorRight, setIsColorRight] = useState<boolean | null>(null);
 
   const emojis = ['🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼'];
   const colors = [
-    { name: 'Red', value: 'bg-red-500', text: 'लाल' },
-    { name: 'Blue', value: 'bg-blue-500', text: 'नीला' },
-    { name: 'Green', value: 'bg-green-500', text: 'हरा' },
-    { name: 'Yellow', value: 'bg-yellow-500', text: 'पीला' },
-    { name: 'Purple', value: 'bg-purple-500', text: 'बैंगनी' },
-    { name: 'Pink', value: 'bg-pink-500', text: 'गुलाबी' },
-    { name: 'Orange', value: 'bg-orange-500', text: 'नारंगी' },
-    { name: 'Indigo', value: 'bg-indigo-500', text: 'नील' }
+    { name: 'Red', value: 'bg-red-500' },
+    { name: 'Blue', value: 'bg-blue-500' },
+    { name: 'Green', value: 'bg-green-500' },
+    { name: 'Yellow', value: 'bg-yellow-500' },
+    { name: 'Purple', value: 'bg-purple-500' },
+    { name: 'Pink', value: 'bg-pink-500' },
+    { name: 'Orange', value: 'bg-orange-500' },
+    { name: 'Indigo', value: 'bg-indigo-500' }
   ];
 
   // Initialize Memory Game
@@ -48,20 +43,6 @@ const PuzzleGamesPage = () => {
     setMoves(0);
   };
 
-  // Initialize Pattern Game
-  const initPatternGame = () => {
-    const newPattern = Array.from({ length: level + 2 }, () => Math.floor(Math.random() * 4));
-    setPattern(newPattern);
-    setUserPattern([]);
-    setGameState('showing');
-    setShowPattern(true);
-    
-    setTimeout(() => {
-      setShowPattern(false);
-      setGameState('input');
-    }, (level + 2) * 1000);
-  };
-
   // Initialize Color Game
   const initColorGame = () => {
     const randomColor = colors[Math.floor(Math.random() * colors.length)];
@@ -71,14 +52,13 @@ const PuzzleGamesPage = () => {
     if (!shuffledColors.find(c => c.name === randomColor.name)) {
       shuffledColors[0] = randomColor;
     }
-    setColorOptions(shuffledColors.map(c => c.name));
+    setColorOptions(shuffledColors);
   };
 
   useEffect(() => {
     if (selectedGame === 'memory') initMemoryGame();
-    if (selectedGame === 'pattern') initPatternGame();
     if (selectedGame === 'colors') initColorGame();
-  }, [selectedGame, level]);
+  }, [selectedGame]);
 
   // Memory Game Logic
   const flipCard = (id: number) => {
@@ -122,37 +102,32 @@ const PuzzleGamesPage = () => {
     }
   };
 
-  // Pattern Game Logic
-  const addToUserPattern = (colorIndex: number) => {
-    if (gameState !== 'input') return;
-    
-    const newUserPattern = [...userPattern, colorIndex];
-    setUserPattern(newUserPattern);
-
-    if (newUserPattern.length === pattern.length) {
-      if (JSON.stringify(newUserPattern) === JSON.stringify(pattern)) {
-        setGameState('success');
-        setTimeout(() => {
-          setLevel(level + 1);
-        }, 1500);
-      } else {
-        setGameState('fail');
-        setTimeout(() => {
-          setLevel(1);
-        }, 1500);
-      }
-    }
-  };
-
   // Color Game Logic
   const selectColor = (colorName: string) => {
     if (colorName === targetColor) {
       setColorScore(colorScore + 1);
-      setTimeout(initColorGame, 1000);
+      setIsColorRight(true);
+      setMessage('Horray! You chose the right color!');
+      setTimeout(() => {
+        initColorGame();
+        removeMessage();
+      }, 2000);
     } else {
-      setTimeout(initColorGame, 1000);
+      setIsColorRight(false);
+      setMessage('Oops! You chose the wrong color!');
+      setTimeout(() => {
+        initColorGame();
+        removeMessage();
+      }, 2000);
     }
   };
+
+  const removeMessage = () => {
+    setTimeout(() => {
+      setMessage(null);
+      setIsColorRight(null);
+    }, 200);
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
@@ -189,16 +164,6 @@ const PuzzleGamesPage = () => {
               }`}
             >
               Memory Match
-            </button>
-            <button
-              onClick={() => setSelectedGame('pattern')}
-              className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
-                selectedGame === 'pattern'
-                  ? 'bg-indigo-500 text-white shadow-lg'
-                  : 'bg-white/80 text-indigo-700 hover:bg-indigo-100'
-              }`}
-            >
-              Pattern Game
             </button>
             <button
               onClick={() => setSelectedGame('colors')}
@@ -253,46 +218,6 @@ const PuzzleGamesPage = () => {
           </div>
         )}
 
-        {/* Pattern Game */}
-        {selectedGame === 'pattern' && (
-          <div className="max-w-2xl mx-auto">
-            <div className="bg-white/90 rounded-2xl p-8 shadow-xl">
-              <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold text-indigo-800 mb-2">Pattern Memory</h3>
-                <p className="text-gray-600">Level: {level}</p>
-                <p className="text-sm text-gray-500 mt-2">
-                  {gameState === 'showing' && 'Watch the pattern!'}
-                  {gameState === 'input' && 'Repeat the pattern!'}
-                  {gameState === 'success' && '🎉 Correct! Next level...'}
-                  {gameState === 'fail' && '❌ Wrong pattern. Try again!'}
-                  {gameState === 'waiting' && 'Get ready...'}
-                </p>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                {[0, 1, 2, 3].map((index) => (
-                  <div
-                    key={index}
-                    onClick={() => addToUserPattern(index)}
-                    className={`aspect-square rounded-xl cursor-pointer transition-all duration-300 ${
-                      showPattern && pattern.includes(index)
-                        ? ['bg-red-400', 'bg-blue-400', 'bg-green-400', 'bg-yellow-400'][index]
-                        : ['bg-red-200 hover:bg-red-300', 'bg-blue-200 hover:bg-blue-300', 'bg-green-200 hover:bg-green-300', 'bg-yellow-200 hover:bg-yellow-300'][index]
-                    }`}
-                  />
-                ))}
-              </div>
-
-              <button
-                onClick={initPatternGame}
-                className="w-full py-3 bg-indigo-500 text-white rounded-xl hover:bg-indigo-600 transition-colors"
-              >
-                Start New Pattern
-              </button>
-            </div>
-          </div>
-        )}
-
         {/* Color Learning Game */}
         {selectedGame === 'colors' && (
           <div className="max-w-2xl mx-auto">
@@ -306,18 +231,21 @@ const PuzzleGamesPage = () => {
                 <p className="text-xl text-gray-700 mb-4">
                   Find the color: <span className="font-bold text-indigo-600">{targetColor}</span>
                 </p>
+                {message && <p className={`text-xl ${isColorRight ? 'text-green-700' : 'text-red-700'} mb-4`}>
+                  {message}
+                </p>}
               </div>
 
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                {colorOptions.map((color, index) => (
-                  <button
-                    key={index}
-                    onClick={() => selectColor(color)}
-                    className={`${color} aspect-square rounded-xl hover:scale-105 transition-all duration-300 shadow-lg flex items-center justify-center`}
-                  >
-                    <span className="text-white font-bold text-lg">{color}</span>
-                  </button>
-                ))}
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                {colorOptions.map((color, index) => { 
+                  return (
+                    <button
+                      key={index}
+                      onClick={() => selectColor(color.name)}
+                      className={`${color.value} aspect-square rounded-xl hover:scale-105 transition-all duration-300 shadow-lg flex items-center justify-center`}
+                    />
+                  )})
+                }
               </div>
 
               <button
