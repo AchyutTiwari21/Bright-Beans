@@ -468,7 +468,7 @@ const LandingPage = () => {
               damping: 10,
               delay: 0.2 
             }}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent"
+            className="leading-[1.5] text-4xl md:text-6xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent"
           >
             Bright Beans
           </motion.h1>
