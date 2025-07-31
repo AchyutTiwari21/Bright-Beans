@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Palette, Brush, Download, RotateCcw, Trash2, Home, Scissors, Heart, Gift } from 'lucide-react';
+import { Palette, Brush, Download, RotateCcw, Trash2, Home, Scissors, Heart, Gift, Square, Circle, Triangle, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const ArtAndCraftPage = () => {
@@ -10,15 +10,104 @@ const ArtAndCraftPage = () => {
   const [brushSize, setBrushSize] = useState(5);
   const [brushColor, setBrushColor] = useState('#000000');
   const [canvasHistory, setCanvasHistory] = useState<ImageData[]>([]);
+  const [drawingMode, setDrawingMode] = useState<'brush' | 'circle' | 'square' | 'triangle'>('brush');
+  const [startPos, setStartPos] = useState<{ x: number; y: number } | null>(null);
 
   // Coloring state
   const [coloringColors, setColoringColors] = useState<{ [key: string]: string }>({});
   const [selectedColor, setSelectedColor] = useState('#ff6b6b');
+  const [currentPicture, setCurrentPicture] = useState(0);
 
   const colors = [
-    '#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57',
-    '#ff9ff3', '#54a0ff', '#5f27cd', '#00d2d3', '#ff9f43',
-    '#ee5a24', '#0abde3', '#10ac84', '#f368e0', '#222f3e'
+    '#ff0000', '#ff8000', '#ffff00', '#80ff00', '#00ff00', '#00ff80',
+    '#00ffff', '#0080ff', '#0000ff', '#8000ff', '#ff00ff', '#ff0080',
+    '#000000', '#404040', '#808080', '#c0c0c0', '#ffffff', '#8b4513',
+    '#ff69b4', '#ffc0cb', '#dda0dd', '#98fb98', '#87ceeb', '#f0e68c'
+  ];
+
+  const coloringPictures = [
+    {
+      name: "Cute Cat",
+      svg: (
+        <svg width="300" height="300" viewBox="0 0 300 300" className="border-2 border-gray-300 rounded-lg bg-white">
+          {/* Improved Cat Drawing */}
+          <ellipse cx="150" cy="140" rx="70" ry="60" fill={coloringColors['cat-head'] || 'white'} stroke="#333" strokeWidth="3" onClick={() => handleColorArea('cat-head')} className="cursor-pointer hover:stroke-purple-500" />
+          
+          {/* Cat ears */}
+          <polygon points="100,90 120,50 140,90" fill={coloringColors['cat-left-ear'] || 'white'} stroke="#333" strokeWidth="3" onClick={() => handleColorArea('cat-left-ear')} className="cursor-pointer hover:stroke-purple-500" />
+          <polygon points="160,90 180,50 200,90" fill={coloringColors['cat-right-ear'] || 'white'} stroke="#333" strokeWidth="3" onClick={() => handleColorArea('cat-right-ear')} className="cursor-pointer hover:stroke-purple-500" />
+          
+          {/* Eyes */}
+          <ellipse cx="130" cy="125" rx="12" ry="15" fill={coloringColors['cat-left-eye'] || 'white'} stroke="#333" strokeWidth="2" onClick={() => handleColorArea('cat-left-eye')} className="cursor-pointer hover:stroke-purple-500" />
+          <ellipse cx="170" cy="125" rx="12" ry="15" fill={coloringColors['cat-right-eye'] || 'white'} stroke="#333" strokeWidth="2" onClick={() => handleColorArea('cat-right-eye')} className="cursor-pointer hover:stroke-purple-500" />
+          
+          {/* Eye pupils */}
+          <ellipse cx="130" cy="125" rx="6" ry="10" fill="#000" />
+          <ellipse cx="170" cy="125" rx="6" ry="10" fill="#000" />
+          
+          {/* Nose */}
+          <polygon points="150,140 145,150 155,150" fill={coloringColors['cat-nose'] || '#ff69b4'} stroke="#333" strokeWidth="2" onClick={() => handleColorArea('cat-nose')} className="cursor-pointer hover:stroke-purple-500" />
+          
+          {/* Body */}
+          <ellipse cx="150" cy="220" rx="50" ry="70" fill={coloringColors['cat-body'] || 'white'} stroke="#333" strokeWidth="3" onClick={() => handleColorArea('cat-body')} className="cursor-pointer hover:stroke-purple-500" />
+          
+          {/* Tail */}
+          <ellipse cx="210" cy="200" rx="20" ry="50" fill={coloringColors['cat-tail'] || 'white'} stroke="#333" strokeWidth="3" onClick={() => handleColorArea('cat-tail')} className="cursor-pointer hover:stroke-purple-500" transform="rotate(20 210 200)" />
+        </svg>
+      )
+    },
+    {
+      name: "Beautiful Scenery",
+      svg: (
+        <svg width="300" height="300" viewBox="0 0 300 300" className="border-2 border-gray-300 rounded-lg bg-white">
+          {/* Sky */}
+          <rect x="0" y="0" width="300" height="180" fill={coloringColors['sky'] || 'white'} stroke="#333" strokeWidth="2" onClick={() => handleColorArea('sky')} className="cursor-pointer hover:stroke-purple-500" />
+          
+          {/* Sun */}
+          <circle cx="250" cy="50" r="25" fill={coloringColors['sun'] || 'white'} stroke="#333" strokeWidth="2" onClick={() => handleColorArea('sun')} className="cursor-pointer hover:stroke-purple-500" />
+          
+          {/* Mountains */}
+          <polygon points="0,120 60,60 120,120" fill={coloringColors['mountain1'] || 'white'} stroke="#333" strokeWidth="2" onClick={() => handleColorArea('mountain1')} className="cursor-pointer hover:stroke-purple-500" />
+          <polygon points="80,120 140,40 200,120" fill={coloringColors['mountain2'] || 'white'} stroke="#333" strokeWidth="2" onClick={() => handleColorArea('mountain2')} className="cursor-pointer hover:stroke-purple-500" />
+          
+          {/* House */}
+          <rect x="120" y="150" width="60" height="50" fill={coloringColors['house-wall'] || 'white'} stroke="#333" strokeWidth="2" onClick={() => handleColorArea('house-wall')} className="cursor-pointer hover:stroke-purple-500" />
+          <polygon points="110,150 150,120 190,150" fill={coloringColors['house-roof'] || 'white'} stroke="#333" strokeWidth="2" onClick={() => handleColorArea('house-roof')} className="cursor-pointer hover:stroke-purple-500" />
+          
+          {/* River */}
+          <path d="M 0 200 Q 75 190 150 200 Q 225 210 300 200 L 300 220 Q 225 230 150 220 Q 75 210 0 220 Z" fill={coloringColors['river'] || 'white'} stroke="#333" strokeWidth="2" onClick={() => handleColorArea('river')} className="cursor-pointer hover:stroke-purple-500" />
+          
+          {/* Ground */}
+          <rect x="0" y="220" width="300" height="80" fill={coloringColors['ground'] || 'white'} stroke="#333" strokeWidth="2" onClick={() => handleColorArea('ground')} className="cursor-pointer hover:stroke-purple-500" />
+        </svg>
+      )
+    },
+    {
+      name: "Fruit Basket",
+      svg: (
+        <svg width="300" height="300" viewBox="0 0 300 300" className="border-2 border-gray-300 rounded-lg bg-white">
+          {/* Basket */}
+          <ellipse cx="150" cy="220" rx="80" ry="25" fill={coloringColors['basket-bottom'] || 'white'} stroke="#333" strokeWidth="2" onClick={() => handleColorArea('basket-bottom')} className="cursor-pointer hover:stroke-purple-500" />
+          <path d="M 70 220 Q 70 180 80 160 L 220 160 Q 230 180 230 220" fill={coloringColors['basket-body'] || 'white'} stroke="#333" strokeWidth="2" onClick={() => handleColorArea('basket-body')} className="cursor-pointer hover:stroke-purple-500" />
+          
+          {/* Apple */}
+          <circle cx="130" cy="140" r="20" fill={coloringColors['apple'] || 'white'} stroke="#333" strokeWidth="2" onClick={() => handleColorArea('apple')} className="cursor-pointer hover:stroke-purple-500" />
+          
+          {/* Orange */}
+          <circle cx="170" cy="135" r="18" fill={coloringColors['orange'] || 'white'} stroke="#333" strokeWidth="2" onClick={() => handleColorArea('orange')} className="cursor-pointer hover:stroke-purple-500" />
+          
+          {/* Banana */}
+          <path d="M 110 120 Q 95 110 85 125 Q 90 140 105 135 Q 115 130 110 120" fill={coloringColors['banana'] || 'white'} stroke="#333" strokeWidth="2" onClick={() => handleColorArea('banana')} className="cursor-pointer hover:stroke-purple-500" />
+          
+          {/* Grapes */}
+          <g fill={coloringColors['grapes'] || 'white'} stroke="#333" strokeWidth="1">
+            <circle cx="200" cy="120" r="6" onClick={() => handleColorArea('grapes')} className="cursor-pointer hover:stroke-purple-500" />
+            <circle cx="190" cy="130" r="6" onClick={() => handleColorArea('grapes')} className="cursor-pointer hover:stroke-purple-500" />
+            <circle cx="210" cy="130" r="6" onClick={() => handleColorArea('grapes')} className="cursor-pointer hover:stroke-purple-500" />
+          </g>
+        </svg>
+      )
+    }
   ];
 
   // Canvas drawing functions
@@ -33,13 +122,16 @@ const ArtAndCraftPage = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Save current state for undo
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     setCanvasHistory(prev => [...prev.slice(-9), imageData]);
 
+    setStartPos({ x, y });
     setIsDrawing(true);
-    ctx.beginPath();
-    ctx.moveTo(x, y);
+
+    if (drawingMode === 'brush') {
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+    }
   };
 
   const draw = (e: React.MouseEvent<HTMLCanvasElement>) => {
@@ -55,17 +147,60 @@ const ArtAndCraftPage = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    ctx.lineWidth = brushSize;
-    ctx.lineCap = 'round';
-    ctx.strokeStyle = brushColor;
-    ctx.lineTo(x, y);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(x, y);
+    if (drawingMode === 'brush') {
+      ctx.lineWidth = brushSize;
+      ctx.lineCap = 'round';
+      ctx.strokeStyle = brushColor;
+      ctx.lineTo(x, y);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+    }
   };
 
-  const stopDrawing = () => {
+  const stopDrawing = (e: React.MouseEvent<HTMLCanvasElement>) => {
+    if (!isDrawing || !startPos) return;
+
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    if (drawingMode !== 'brush') {
+      ctx.strokeStyle = brushColor;
+      ctx.lineWidth = brushSize;
+
+      const width = x - startPos.x;
+      const height = y - startPos.y;
+
+      switch (drawingMode) {
+        case 'circle':
+          const radius = Math.sqrt(width * width + height * height);
+          ctx.beginPath();
+          ctx.arc(startPos.x, startPos.y, radius, 0, 2 * Math.PI);
+          ctx.stroke();
+          break;
+        case 'square':
+          ctx.strokeRect(startPos.x, startPos.y, width, height);
+          break;
+        case 'triangle':
+          ctx.beginPath();
+          ctx.moveTo(startPos.x, startPos.y);
+          ctx.lineTo(x, y);
+          ctx.lineTo(startPos.x - width, y);
+          ctx.closePath();
+          ctx.stroke();
+          break;
+      }
+    }
+
     setIsDrawing(false);
+    setStartPos(null);
   };
 
   const clearCanvas = () => {
@@ -103,7 +238,6 @@ const ArtAndCraftPage = () => {
     link.click();
   };
 
-  // Coloring functions
   const handleColorArea = (areaId: string) => {
     setColoringColors(prev => ({
       ...prev,
@@ -111,7 +245,16 @@ const ArtAndCraftPage = () => {
     }));
   };
 
-  // Animation variants
+  const nextPicture = () => {
+    setCurrentPicture((prev) => (prev + 1) % coloringPictures.length);
+    setColoringColors({});
+  };
+
+  const prevPicture = () => {
+    setCurrentPicture((prev) => (prev - 1 + coloringPictures.length) % coloringPictures.length);
+    setColoringColors({});
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -183,14 +326,48 @@ const ArtAndCraftPage = () => {
               🖍️ Color a Picture
             </h2>
             
-            {/* Color Palette */}
-            <div className="flex flex-wrap justify-center gap-2 mb-6">
+            {/* Picture Navigation */}
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <motion.button
+                onClick={prevPicture}
+                className="flex items-center gap-2 px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors"
+                variants={buttonVariants}
+                whileHover="hover"
+                whileTap="tap"
+              >
+                <ChevronLeft size={16} />
+                Previous
+              </motion.button>
+              
+              <div className="text-center">
+                <h3 className="text-lg font-semibold text-purple-700">
+                  {coloringPictures[currentPicture].name}
+                </h3>
+                <p className="text-sm text-gray-600">
+                  {currentPicture + 1} of {coloringPictures.length}
+                </p>
+              </div>
+              
+              <motion.button
+                onClick={nextPicture}
+                className="flex items-center gap-2 px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors"
+                variants={buttonVariants}
+                whileHover="hover"
+                whileTap="tap"
+              >
+                Next
+                <ChevronRight size={16} />
+              </motion.button>
+            </div>
+            
+            {/* Enhanced Color Palette */}
+            <div className="grid grid-cols-6 md:grid-cols-12 gap-2 justify-center mb-6 max-w-2xl mx-auto">
               {colors.map((color) => (
                 <motion.button
                   key={color}
                   className={`w-8 h-8 rounded-full border-4 ${
-                    selectedColor === color ? 'border-gray-800' : 'border-gray-300'
-                  }`}
+                    selectedColor === color ? 'border-gray-800 scale-110' : 'border-gray-300'
+                  } transition-all duration-200`}
                   style={{ backgroundColor: color }}
                   onClick={() => setSelectedColor(color)}
                   variants={buttonVariants}
@@ -202,102 +379,16 @@ const ArtAndCraftPage = () => {
 
             {/* SVG Coloring Area */}
             <div className="flex justify-center">
-              <svg
-                width="300"
-                height="300"
-                viewBox="0 0 300 300"
-                className="border-2 border-gray-300 rounded-lg bg-white"
-              >
-                {/* Simple Cat Drawing */}
-                <circle
-                  cx="150"
-                  cy="120"
-                  r="60"
-                  fill={coloringColors['head'] || 'white'}
-                  stroke="#333"
-                  strokeWidth="3"
-                  onClick={() => handleColorArea('head')}
-                  className="cursor-pointer hover:stroke-purple-500"
-                />
-                <circle
-                  cx="130"
-                  cy="100"
-                  r="8"
-                  fill={coloringColors['leftEye'] || 'white'}
-                  stroke="#333"
-                  strokeWidth="2"
-                  onClick={() => handleColorArea('leftEye')}
-                  className="cursor-pointer hover:stroke-purple-500"
-                />
-                <circle
-                  cx="170"
-                  cy="100"
-                  r="8"
-                  fill={coloringColors['rightEye'] || 'white'}
-                  stroke="#333"
-                  strokeWidth="2"
-                  onClick={() => handleColorArea('rightEye')}
-                  className="cursor-pointer hover:stroke-purple-500"
-                />
-                <polygon
-                  points="150,110 140,130 160,130"
-                  fill={coloringColors['nose'] || 'white'}
-                  stroke="#333"
-                  strokeWidth="2"
-                  onClick={() => handleColorArea('nose')}
-                  className="cursor-pointer hover:stroke-purple-500"
-                />
-                <ellipse
-                  cx="150"
-                  cy="200"
-                  rx="40"
-                  ry="60"
-                  fill={coloringColors['body'] || 'white'}
-                  stroke="#333"
-                  strokeWidth="3"
-                  onClick={() => handleColorArea('body')}
-                  className="cursor-pointer hover:stroke-purple-500"
-                />
-                {/* Cat ears */}
-                <polygon
-                  points="110,80 130,40 150,80"
-                  fill={coloringColors['leftEar'] || 'white'}
-                  stroke="#333"
-                  strokeWidth="3"
-                  onClick={() => handleColorArea('leftEar')}
-                  className="cursor-pointer hover:stroke-purple-500"
-                />
-                <polygon
-                  points="150,80 170,40 190,80"
-                  fill={coloringColors['rightEar'] || 'white'}
-                  stroke="#333"
-                  strokeWidth="3"
-                  onClick={() => handleColorArea('rightEar')}
-                  className="cursor-pointer hover:stroke-purple-500"
-                />
-                {/* Tail */}
-                <ellipse
-                  cx="200"
-                  cy="180"
-                  rx="15"
-                  ry="40"
-                  fill={coloringColors['tail'] || 'white'}
-                  stroke="#333"
-                  strokeWidth="3"
-                  onClick={() => handleColorArea('tail')}
-                  className="cursor-pointer hover:stroke-purple-500"
-                  transform="rotate(30 200 180)"
-                />
-              </svg>
+              {coloringPictures[currentPicture].svg}
             </div>
             
             <p className="text-center text-gray-600 mt-4">
-              Click on different parts of the cat to color them!
+              Click on different parts of the picture to color them!
             </p>
           </div>
         </motion.section>
 
-        {/* Free Drawing Canvas Section */}
+        {/* Enhanced Free Drawing Canvas Section */}
         <motion.section 
           className="mb-12"
           variants={sectionVariants}
@@ -306,6 +397,61 @@ const ArtAndCraftPage = () => {
             <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 text-purple-700">
               ✏️ Free Drawing Canvas
             </h2>
+            
+            {/* Drawing Mode Selection */}
+            <div className="flex flex-wrap justify-center gap-4 mb-6">
+              <motion.button
+                onClick={() => setDrawingMode('brush')}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+                  drawingMode === 'brush' ? 'bg-purple-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                }`}
+                variants={buttonVariants}
+                whileHover="hover"
+                whileTap="tap"
+              >
+                <Brush size={16} />
+                Brush
+              </motion.button>
+              
+              <motion.button
+                onClick={() => setDrawingMode('circle')}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+                  drawingMode === 'circle' ? 'bg-purple-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                }`}
+                variants={buttonVariants}
+                whileHover="hover"
+                whileTap="tap"
+              >
+                <Circle size={16} />
+                Circle
+              </motion.button>
+              
+              <motion.button
+                onClick={() => setDrawingMode('square')}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+                  drawingMode === 'square' ? 'bg-purple-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                }`}
+                variants={buttonVariants}
+                whileHover="hover"
+                whileTap="tap"
+              >
+                <Square size={16} />
+                Rectangle
+              </motion.button>
+              
+              <motion.button
+                onClick={() => setDrawingMode('triangle')}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+                  drawingMode === 'triangle' ? 'bg-purple-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                }`}
+                variants={buttonVariants}
+                whileHover="hover"
+                whileTap="tap"
+              >
+                <Triangle size={16} />
+                Triangle
+              </motion.button>
+            </div>
             
             {/* Drawing Controls */}
             <div className="flex flex-wrap justify-center gap-4 mb-6">
@@ -333,6 +479,23 @@ const ArtAndCraftPage = () => {
                   className="w-12 h-8 rounded border"
                 />
               </div>
+            </div>
+
+            {/* Enhanced Color Palette for Canvas */}
+            <div className="grid grid-cols-6 md:grid-cols-12 gap-2 justify-center mb-6 max-w-2xl mx-auto">
+              {colors.map((color) => (
+                <motion.button
+                  key={color}
+                  className={`w-6 h-6 rounded border-2 ${
+                    brushColor === color ? 'border-gray-800 scale-110' : 'border-gray-300'
+                  } transition-all duration-200`}
+                  style={{ backgroundColor: color }}
+                  onClick={() => setBrushColor(color)}
+                  variants={buttonVariants}
+                  whileHover="hover"
+                  whileTap="tap"
+                />
+              ))}
             </div>
 
             {/* Canvas */}
