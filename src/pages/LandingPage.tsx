@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { BookOpen, Calculator, Languages, Puzzle, Music, Type, Sparkles, Heart } from 'lucide-react';
+import { BookOpen, Calculator, Languages, Puzzle, Music, Type, Sparkles, Heart, Palette } from 'lucide-react';
 
 const LandingPage = () => {
   const activities = [
@@ -66,6 +66,15 @@ const LandingPage = () => {
       color: 'from-teal-400 to-cyan-500',
       bgColor: 'bg-gradient-to-br from-teal-50 to-cyan-100',
       emoji: '🧩'
+    },
+    {
+      title: 'Art & Craft',
+      description: 'Draw, color, and create with joy',
+      icon: Palette,
+      path: '/art-and-craft',
+      color: 'from-purple-400 to-pink-500',
+      bgColor: 'bg-gradient-to-br from-purple-50 to-pink-100',
+      emoji: '🎨'
     }
   ];
 

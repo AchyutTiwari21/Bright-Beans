@@ -7,6 +7,7 @@ import HindiRhymesPage from './pages/HindiRhymesPage';
 import HindiAlphabetPage from './pages/HindiAlphabetPage';
 import StoryTellingPage from './pages/StoryTellingPage';
 import PuzzleGamesPage from './pages/PuzzleGamesPage';
+import ArtAndCraftPage from './pages/ArtAndCraftPage';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/hindi-alphabet" element={<HindiAlphabetPage />} />
           <Route path="/stories" element={<StoryTellingPage />} />
           <Route path="/puzzles" element={<PuzzleGamesPage />} />
+          <Route path="/art-and-craft" element={<ArtAndCraftPage />} />
         </Routes>
       </div>
     </Router>
