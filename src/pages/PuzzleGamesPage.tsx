@@ -82,10 +82,13 @@ const PuzzleGamesPage = () => {
 
   // Memory Game Logic
   const flipCard = (id: number) => {
-    if (flippedCards.length === 2 || cards[id].isFlipped || cards[id].isMatched) return;
+    const cardIndex = cards.findIndex((card) => card.id === id);
+    if (cardIndex === -1) return;
+
+    if (flippedCards.length === 2 || cards[cardIndex].isFlipped || cards[cardIndex].isMatched) return;
 
     const newCards = [...cards];
-    newCards[id].isFlipped = true;
+    newCards[cardIndex].isFlipped = true;
     setCards(newCards);
 
     const newFlippedCards = [...flippedCards, id];
@@ -94,12 +97,15 @@ const PuzzleGamesPage = () => {
     if (newFlippedCards.length === 2) {
       setMoves(moves + 1);
       const [first, second] = newFlippedCards;
+
+      const firstCardIndex = cards.findIndex((card) => card.id === first);
+      const secondCardIndex = cards.findIndex((card) => card.id === second);
       
-      if (cards[first].emoji === cards[second].emoji) {
+      if (cards[firstCardIndex].emoji === cards[secondCardIndex].emoji) {
         setTimeout(() => {
           const matchedCards = [...newCards];
-          matchedCards[first].isMatched = true;
-          matchedCards[second].isMatched = true;
+          matchedCards[firstCardIndex].isMatched = true;
+          matchedCards[secondCardIndex].isMatched = true;
           setCards(matchedCards);
           setScore(score + 1);
           setFlippedCards([]);
@@ -107,8 +113,8 @@ const PuzzleGamesPage = () => {
       } else {
         setTimeout(() => {
           const resetCards = [...newCards];
-          resetCards[first].isFlipped = false;
-          resetCards[second].isFlipped = false;
+          resetCards[firstCardIndex].isFlipped = false;
+          resetCards[secondCardIndex].isFlipped = false;
           setCards(resetCards);
           setFlippedCards([]);
         }, 1000);
