@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Palette, Brush, Download, RotateCcw, Trash2, Home, Scissors, Heart, Gift } from 'lucide-react';
 import { Link } from 'react-router-dom';
