@@ -22,8 +22,7 @@ const HindiRhymesPage = () => {
       character: '🌙',
       characterColor: 'bg-gradient-to-br from-blue-300 to-indigo-400',
       theme: "bg-gradient-to-br from-blue-100 to-indigo-100",
-      audioUrl: '/assets/audio/chanda_mama_hindi.mp3',
-      backgroundMusicUrl: '/assets/audio/gentle_night_music.mp3',
+      videoUrl: "https://www.youtube.com/embed/v8ZxNTm4EAE?si=f_H7gTUkLv28zFxT",
       rhymingWords: [
         { word1: 'के', word2: 'बूर के', emoji1: '🌙', emoji2: '🍪' },
         { word1: 'में', word2: 'प्याली में', emoji1: '🍽️', emoji2: '🥛' },
@@ -33,17 +32,11 @@ const HindiRhymesPage = () => {
     {
       id: 'aloo-kachalu',
       title: "आलू कचालू",
-      content: `आलू कचालू बेटा,
-कहाँ गए थे?
-बंदर की झाड़ी में,
-सो गए थे।
-बंदर ने लात मारी,
-रो रो के घर आए।`,
+      content: `"आलू कचालू बेटा, कहाँ गए थे? कद्दू की टोकरी में सो रहे थे। कद्दू ने लात मारी, रो रहे थे। मम्मी ने प्यार किया, हँस रहे थे। पापा ने पैसे दिए, नाच रहे थे। भैया ने लड्डू दिए, खा रहे थे।"`,
       character: '🥔',
       characterColor: 'bg-gradient-to-br from-yellow-300 to-amber-400',
       theme: "bg-gradient-to-br from-green-100 to-teal-100",
-      audioUrl: '/assets/audio/aloo_kachalu_hindi.mp3',
-      backgroundMusicUrl: '/assets/audio/playful_forest_music.mp3',
+      videoUrl: "https://www.youtube.com/embed/MKlM07RkGU0?si=JiuaXvkA5iu2M1D-",
       rhymingWords: [
         { word1: 'बेटा', word2: 'थे', emoji1: '👶', emoji2: '❓' },
         { word1: 'में', word2: 'थे', emoji1: '🌳', emoji2: '😴' },
@@ -60,8 +53,7 @@ const HindiRhymesPage = () => {
       character: '🐠',
       characterColor: 'bg-gradient-to-br from-cyan-300 to-blue-400',
       theme: "bg-gradient-to-br from-cyan-100 to-blue-100",
-      audioUrl: '/assets/audio/machli_rani_hindi.mp3',
-      backgroundMusicUrl: '/assets/audio/underwater_music.mp3',
+      videoUrl: "https://www.youtube.com/embed/CUciBrtqFGM?si=-mOtyc5m2q_EFubg",
       rhymingWords: [
         { word1: 'रानी है', word2: 'पानी है', emoji1: '👸', emoji2: '💧' },
         { word1: 'जाएगी', word2: 'जाएगी', emoji1: '😨', emoji2: '💀' }
@@ -71,14 +63,13 @@ const HindiRhymesPage = () => {
       id: 'nani-morni',
       title: "नानी तेरी मोरनी",
       content: `नानी तेरी मोरनी को मोर ले गए,
-नानी तेरी मोरनी को मोर ले गए।
-अरे मोरनी के बच्चे भी रो रहे हैं,
-अरे मोरनी के बच्चे भी रो रहे हैं।`,
+बाकी जो बचा था काले चोर ले गए।
+नानी तेरी मोरनी को मोर ले गए,
+बाकी जो बचा था काले चोर ले गए।`,
       character: '🦚',
       characterColor: 'bg-gradient-to-br from-green-400 to-emerald-500',
       theme: "bg-gradient-to-br from-purple-100 to-pink-100",
-      audioUrl: '/assets/audio/nani_morni_hindi.mp3',
-      backgroundMusicUrl: '/assets/audio/traditional_folk_music.mp3',
+      videoUrl: "https://www.youtube.com/embed/k8sN7Vl3IFQ?si=F0xWo0DiusjIdhBX",
       rhymingWords: [
         { word1: 'गए', word2: 'गए', emoji1: '🦚', emoji2: '🦚' },
         { word1: 'हैं', word2: 'हैं', emoji1: '😭', emoji2: '😭' }
@@ -87,60 +78,35 @@ const HindiRhymesPage = () => {
     {
       id: 'lakdi-kathi',
       title: "लकड़ी की काठी",
-      content: `लकड़ी की काठी,
-काठी पे घोड़ा।
-घोड़े की दुम में,
-किसने बांधा मोड़ा?
-राजा ने बांधा मोड़ा,
-रानी ने खोला।`,
+      content: `लकड़ी की काठी काठी पे घोड़ा
+घोड़े की दुम पे जो मारा हथौड़ा
+
+दौड़ा दौड़ा दौड़ा घोड़ा दुम उठा के दौड़ा
+घोड़ा पहुँचा चौक में चौक में था नाई
+
+घोड़े जी की नाई ने हजामत जो बनाई
+दौड़ा दौड़ा दौड़ा घोड़ा दुम उठा के दौड़ा
+
+घोड़ा था घमंडी पहुँचा सब्ज़ी मंडी
+सब्ज़ी मंडी बर्फ़ पड़ी थी बर्फ़ में लग गई ठंडी
+
+दौड़ा दौड़ा दौड़ा घोड़ा दुम उठा के दौड़ा
+घोड़ा अपना तगड़ा है देखो कितनी चर्बी है
+
+चलता है मेहरौली में पर घोड़ा अपना अरबी है
+हाथ छुड़ा के दौड़ा घोड़ा दुम उठा के दौड़ा
+
+लकड़ी की काठी काठी पे घोड़ा
+घोड़े की दुम पे जो मारा हथौड़ा
+
+दौड़ा दौड़ा दौड़ा घोड़ा दुम उठा के दौड़ा`,
       character: '🐎',
       characterColor: 'bg-gradient-to-br from-amber-400 to-orange-500',
       theme: "bg-gradient-to-br from-yellow-100 to-orange-100",
-      audioUrl: '/assets/audio/lakdi_kathi_hindi.mp3',
-      backgroundMusicUrl: '/assets/audio/royal_court_music.mp3',
+      videoUrl: "https://www.youtube.com/embed/P2r7LoytBfo?si=0GungSwQ6U8n5i2A",
       rhymingWords: [
         { word1: 'काठी', word2: 'घोड़ा', emoji1: '🪑', emoji2: '🐎' },
         { word1: 'मोड़ा', word2: 'खोला', emoji1: '🎀', emoji2: '🔓' }
-      ]
-    },
-    {
-      id: 'ring-ring',
-      title: "रिंग रिंग रिंग",
-      content: `रिंग रिंग रिंग,
-कौन है फोन पे?
-मैं हूँ तेरी मम्मी,
-घर आ जा बेटे।
-खाना तैयार है,
-दूध भी ठंडा है।`,
-      character: '📞',
-      characterColor: 'bg-gradient-to-br from-red-400 to-pink-500',
-      theme: "bg-gradient-to-br from-red-100 to-pink-100",
-      audioUrl: '/assets/audio/ring_ring_hindi.mp3',
-      backgroundMusicUrl: '/assets/audio/home_comfort_music.mp3',
-      rhymingWords: [
-        { word1: 'रिंग', word2: 'पे', emoji1: '📞', emoji2: '☎️' },
-        { word1: 'मम्मी', word2: 'बेटे', emoji1: '👩', emoji2: '👶' },
-        { word1: 'है', word2: 'है', emoji1: '🍽️', emoji2: '🥛' }
-      ]
-    },
-    {
-      id: 'ek-do-teen',
-      title: "एक दो तीन चार",
-      content: `एक दो तीन चार,
-पांच छह सात आठ।
-नौ दस ग्यारह बारह,
-तेरह चौदह पंद्रह सोलह।
-सत्रह अठारह उन्नीस बीस,
-गिनती सीखो जल्दी जल्दी।`,
-      character: '🔢',
-      characterColor: 'bg-gradient-to-br from-purple-400 to-violet-500',
-      theme: "bg-gradient-to-br from-purple-100 to-violet-100",
-      audioUrl: '/assets/audio/ek_do_teen_hindi.mp3',
-      backgroundMusicUrl: '/assets/audio/counting_song_music.mp3',
-      rhymingWords: [
-        { word1: 'चार', word2: 'आठ', emoji1: '4️⃣', emoji2: '8️⃣' },
-        { word1: 'बारह', word2: 'सोलह', emoji1: '1️⃣2️⃣', emoji2: '1️⃣6️⃣' },
-        { word1: 'बीस', word2: 'जल्दी', emoji1: '2️⃣0️⃣', emoji2: '⚡' }
       ]
     }
   ];
@@ -205,7 +171,7 @@ const HindiRhymesPage = () => {
       </motion.header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-6 py-8">
+      <main className="container mx-auto px-2 lg:px-6 py-8">
         <AnimatePresence mode="wait">
           {!selectedRhyme ? (
             // Rhymes Grid
@@ -264,7 +230,7 @@ const HindiRhymesPage = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -50 }}
               transition={{ duration: 0.5 }}
-              className="max-w-4xl mx-auto"
+              className="min-w-full mx-auto px-0"
             >
               <div className="mb-6">
                 <motion.button

@@ -22,9 +22,7 @@ How I wonder what you are!`,
       character: '⭐',
       characterColor: 'bg-gradient-to-br from-yellow-300 to-amber-400',
       theme: "bg-gradient-to-br from-yellow-100 to-amber-100",
-      audioUrl: '/assets/audio/twinkle_star_english.mp3',
-      audioUrlHindi: '/assets/audio/twinkle_star_hindi.mp3',
-      backgroundMusicUrl: '/assets/audio/gentle_lullaby_music.mp3',
+      videoUrl: "https://www.youtube.com/embed/yCjJyiqpAuU?si=vVJujmftY9cvjZtl",
       rhymingWords: [
         { word1: 'star', word2: 'are', emoji1: '⭐', emoji2: '❓' },
         { word1: 'high', word2: 'sky', emoji1: '⬆️', emoji2: '🌌' }
@@ -45,8 +43,7 @@ To see a lamb at school.`,
       character: '🐑',
       characterColor: 'bg-gradient-to-br from-pink-300 to-rose-400',
       theme: "bg-gradient-to-br from-pink-100 to-rose-100",
-      audioUrl: '/assets/audio/mary_lamb_english.mp3',
-      backgroundMusicUrl: '/assets/audio/playful_children_music.mp3',
+      videoUrl: "https://www.youtube.com/embed/YE7PiTwhTQk?si=f-DdBn5P8tBa8VGj",
       rhymingWords: [
         { word1: 'lamb', word2: 'snow', emoji1: '🐑', emoji2: '❄️' },
         { word1: 'went', word2: 'go', emoji1: '🚶', emoji2: '➡️' },
@@ -64,8 +61,7 @@ Couldn't put Humpty together again.`,
       character: '🥚',
       characterColor: 'bg-gradient-to-br from-orange-300 to-red-400',
       theme: "bg-gradient-to-br from-orange-100 to-red-100",
-      audioUrl: '/assets/audio/humpty_dumpty_english.mp3',
-      backgroundMusicUrl: '/assets/audio/whimsical_nursery_music.mp3',
+      videoUrl: "https://www.youtube.com/embed/nrv495corBc?si=kLC3NYVstOPT-t4I",
       rhymingWords: [
         { word1: 'wall', word2: 'fall', emoji1: '🧱', emoji2: '⬇️' },
         { word1: 'men', word2: 'again', emoji1: '👨', emoji2: '🔄' }
@@ -86,8 +82,7 @@ Who lives down the lane.`,
       character: '🐑',
       characterColor: 'bg-gradient-to-br from-gray-400 to-slate-500',
       theme: "bg-gradient-to-br from-gray-100 to-slate-100",
-      audioUrl: '/assets/audio/baa_sheep_english.mp3',
-      backgroundMusicUrl: '/assets/audio/countryside_music.mp3',
+      videoUrl: "https://www.youtube.com/embed/CRHvTTOR8Ns?si=irK9IISQ0aWES1US",
       rhymingWords: [
         { word1: 'sheep', word2: 'wool', emoji1: '🐑', emoji2: '🧶' },
         { word1: 'sir', word2: 'full', emoji1: '👨', emoji2: '🎒' },
@@ -105,8 +100,7 @@ Hickory dickory dock.`,
       character: '🐭',
       characterColor: 'bg-gradient-to-br from-brown-400 to-amber-500',
       theme: "bg-gradient-to-br from-brown-100 to-amber-100",
-      audioUrl: '/assets/audio/hickory_dock_english.mp3',
-      backgroundMusicUrl: '/assets/audio/clock_ticking_music.mp3',
+      videoUrl: "https://www.youtube.com/embed/ygcN65SlLFg?si=Z9H0mf3JZ9uTZyzr",
       rhymingWords: [
         { word1: 'dock', word2: 'clock', emoji1: '⚓', emoji2: '🕐' },
         { word1: 'one', word2: 'down', emoji1: '1️⃣', emoji2: '⬇️' }
@@ -122,8 +116,7 @@ Life is but a dream.`,
       character: '🚣',
       characterColor: 'bg-gradient-to-br from-blue-400 to-cyan-500',
       theme: "bg-gradient-to-br from-blue-100 to-cyan-100",
-      audioUrl: '/assets/audio/row_boat_english.mp3',
-      backgroundMusicUrl: '/assets/audio/gentle_water_music.mp3',
+      videoUrl: "https://www.youtube.com/embed/PZJS2_pWMpE?si=uXBxnEQH8gtdvrrt",
       rhymingWords: [
         { word1: 'boat', word2: 'stream', emoji1: '🚣', emoji2: '🌊' },
         { word1: 'merrily', word2: 'dream', emoji1: '😊', emoji2: '💭' }
@@ -192,7 +185,7 @@ Life is but a dream.`,
       </motion.header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-6 py-8">
+      <main className="container mx-auto px-2 lg:px-6 py-8">
         <AnimatePresence mode="wait">
           {!selectedPoem ? (
             // Poems Grid
@@ -251,7 +244,7 @@ Life is but a dream.`,
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -50 }}
               transition={{ duration: 0.5 }}
-              className="max-w-4xl mx-auto"
+              className="min-w-full mx-auto px-0"
             >
               <div className="mb-6">
                 <motion.button
